@@ -1,0 +1,32 @@
+[[extend 'layout.html']]
+
+<div class="section">
+  <div class="vars">
+    [[=form.custom.begin ]]
+
+    <p>Name</p>
+    [[=form.custom.widgets["product_name"] ]]
+
+    <p>Recaptcha token</p>
+    <input type="text" value="" name="g-recaptcha-response" id="g-recaptcha-response">
+    <br>
+
+    [[=form.custom.submit ]]
+
+    [[=form.custom.end ]]
+
+  </div>
+</div>
+
+[[block page_scripts]]<!-- individual pages can add scripts here -->
+<script src="https://www.google.com/recaptcha/api.js?render=[[=captcha_site_key]]"></script>
+
+<script>
+  let captcha_key = '[[=captcha_site_key]]'
+  grecaptcha.ready(function () {
+    grecaptcha.execute(captcha_key, { action: 'contacto' }).then(function (token) {
+      document.getElementById('g-recaptcha-response').value = token;
+    });
+  });
+</script>
+[[end]]
