@@ -190,6 +190,7 @@ if settings.USE_CELERY:
 # #######################################################
 auth.enable(uses=(session, T, db), env=dict(T=T))
 
+# TODO recaptcha v3 in auth forms
 # #######################################################
 # Define convenience decorators
 # #######################################################

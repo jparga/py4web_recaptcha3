@@ -33,6 +33,10 @@ The Google recaptcha keys are imported from the settings.py file
 
 Make sure you have a valid public and secret key from Google reCAPTCHA and a valid token from the user.
 
+## TODO
+
+Recaptcha in auth forms
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
