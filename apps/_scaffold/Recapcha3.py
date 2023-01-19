@@ -35,14 +35,15 @@ class Recaptcha3:
         Verifies the reCAPTCHA token and returns the result and message.
         """
         if not self.token:
-            return {"result": "NOK", "message": "Token is missing"}
+            return {"result": False, "message": "Token is missing"}
         url = f"https://www.google.com/recaptcha/api/siteverify?secret={self.secret_key}&response={self.token}"
         self.response = requests.post(url)
         self.json = self.response.json()
         if self.json["success"] and self.json["score"] > self.score:
-            return {"result": "OK", "message": "You are a human. Aren't you?"}
+            return {"result": True, "message": "You are a human. Aren't you?"}
         else:
             return {
-                "result": "NOK",
-                "message": "May be you are a bot. If you are human, please try again.",
+                "result": False,
+                "message": "May be you are a bot. If you are human, please try again. "
+                + str(self.json["error-codes"]),
             }

@@ -42,11 +42,13 @@ from py4web.utils.form import Form
 from pydal.validators import IS_NOT_EMPTY
 
 from apps._scaffold import settings
+from .Recapcha3 import Recaptcha3
 
 
 @action("index", method=["GET", "POST"])
 @action.uses("index.html", auth, T)
 def index():
+    message = "Waiting..."
     captcha_site_key = settings.GOOGLE_RECAPTCHA_SITE_KEY
     form = Form(
         [
@@ -55,9 +57,12 @@ def index():
     )
 
     if form.accepted:
+        recaptcha_response = request.POST.get("g-recaptcha-response")
+        captcha = Recaptcha3(token=recaptcha_response, score=0.4)
+        verificacion = captcha.captcha_verify()
         # Do something with form.vars['product_name'] and form.vars['product_quantity']
-        print("accepted")
+        message = verificacion["message"]
     if form.errors:
         # display message error
-        print("not_accepted")
-    return dict(form=form, captcha_site_key=captcha_site_key)
+        message = "Form errors"
+    return dict(form=form, message=message, captcha_site_key=captcha_site_key)
