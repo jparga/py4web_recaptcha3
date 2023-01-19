@@ -2,8 +2,10 @@
 
 import requests
 
-# Change the settings import with the proper app name
-from apps._scaffold import settings
+# Change the settings import with the proper app route
+# The Google recaptcha keys coul also be imported from environmen
+
+from .test.apps._scaffold import settings
 
 
 class Recaptcha3:
@@ -19,7 +21,7 @@ class Recaptcha3:
     captcha_verify(): Verifies the reCAPTCHA token and returns the result and message.
     """
 
-    def __init__(self, token: str = None, score: float = 0.4):
+    def __init__(self, token: str = None, score: float = 0.5):
         """
         Initializes the Recaptcha3 class with the public and secret key, token and score
         """
@@ -44,6 +46,6 @@ class Recaptcha3:
         else:
             return {
                 "result": False,
-                "message": "May be you are a bot. If you are human, please try again. "
+                "message": "May be you are a bot. If you are human, please reload and try again. "
                 + str(self.json["error-codes"]),
             }

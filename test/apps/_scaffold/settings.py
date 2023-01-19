@@ -101,6 +101,7 @@ CELERY_BROKER = "redis://localhost:6379/0"
 GOOGLE_RECAPTCHA_SITE_KEY = "my-site-key"
 GOOGLE_RECAPTCHA_SECRET_KEY = "my-secret-key"
 
+
 # try import private settings
 # try:
 #     from .settings_private import *

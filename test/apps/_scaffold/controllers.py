@@ -42,7 +42,7 @@ from py4web.utils.form import Form
 from pydal.validators import IS_NOT_EMPTY
 
 from apps._scaffold import settings
-from .Recapcha3 import Recaptcha3
+from .recaptcha3 import Recaptcha3
 
 
 @action("index", method=["GET", "POST"])
@@ -57,10 +57,21 @@ def index():
     )
 
     if form.accepted:
-        recaptcha_response = request.POST.get("g-recaptcha-response")
-        captcha = Recaptcha3(token=recaptcha_response, score=0.4)
+        # Get the token from form
+        my_token = request.POST.get("g-recaptcha-response")
+
+        # Get recaptcha response
+        captcha = Recaptcha3(token=my_token, score=0.6)
+
+        # Get the verification result
         verificacion = captcha.captcha_verify()
-        # Do something with form.vars['product_name'] and form.vars['product_quantity']
+
+        # Make up your decision
+        if verificacion["result"] == True:
+            print("Looks like a human")
+        else:
+            print("Looks like a bot")
+
         message = verificacion["message"]
     if form.errors:
         # display message error

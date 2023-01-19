@@ -1,6 +1,33 @@
-# py4web_recaptcha3
+# Recaptcha3
 
-Recaptcha V3 for py4web
+A python class that allows you to verify reCAPTCHA v3 tokens.
+
+A test with py4web \_scaffold app.
+
+Documentation about reCaptcha: https://developers.google.com/recaptcha/docs/v3
+
+## Example
+
+```python3
+
+from recaptcha3 import Recaptcha3
+
+recaptcha = Recaptcha3(token="your_token", score=0.5)
+recaptcha.secret_key = "your_secret_key"
+recaptcha.public_key = "your_public_key"
+result = recaptcha.captcha_verify()
+print(result)
+```
+
+The example above will output:
+
+`{'result': True, 'message': 'You are a human. Aren't you?'}`
+
+### Test with py4web
+
+In the test folder there is an example for py4web.
+
+The Google recaptcha keys are imported from the settings.py file
 
 ## Note
 
