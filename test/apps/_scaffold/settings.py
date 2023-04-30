@@ -98,8 +98,8 @@ CELERY_BROKER = "redis://localhost:6379/0"
 
 
 # Recaptcha V3 settings
-GOOGLE_RECAPTCHA_SITE_KEY = "my-site-key"
-GOOGLE_RECAPTCHA_SECRET_KEY = "my-secret-key"
+RECAPTCHA_SITE_KEY = "MY_RECAPTCHA_SITE_KEY"
+RECAPTCHA_SECRET_KEY = "MY_RECAPTCHA_SECRET_KEY"
 
 
 # try import private settings

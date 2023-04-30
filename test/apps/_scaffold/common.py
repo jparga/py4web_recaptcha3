@@ -87,6 +87,9 @@ auth.param.login_expiration_time = 3600
 auth.param.password_complexity = {"entropy": 50}
 auth.param.block_previous_password_num = 3
 auth.param.default_login_enabled = settings.DEFAULT_LOGIN_ENABLED
+
+auth.extra_auth_user_fields = [Field("recaptcha")]
+
 auth.define_tables()
 auth.fix_actions()
 
@@ -188,7 +191,19 @@ if settings.USE_CELERY:
 # #######################################################
 # Enable authentication
 # #######################################################
-auth.enable(uses=(session, T, db), env=dict(T=T))
+# #######################################################
+# Enable authentication
+# #######################################################
+
+
+if settings.RECAPTCHA_SECRET_KEY:
+    from py4web.utils.recaptcha import ReCaptcha
+
+    recaptcha = ReCaptcha(settings.RECAPTCHA_SITE_KEY, settings.RECAPTCHA_SECRET_KEY)
+    auth.extra_form_fields = {"login": [recaptcha.field], "register": [recaptcha.field]}
+    auth.enable(uses=(session, T, db, recaptcha.fixture), env=dict(T=T))
+else:
+    auth.enable(uses=(session, T, db), env=dict(T=T))
 
 # TODO recaptcha v3 in auth forms
 # #######################################################

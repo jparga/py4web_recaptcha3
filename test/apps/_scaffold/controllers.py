@@ -42,14 +42,14 @@ from py4web.utils.form import Form
 from pydal.validators import IS_NOT_EMPTY
 
 from apps._scaffold import settings
-from .recaptcha3 import Recaptcha3
+from .recaptcha3 import Recaptcha3, ReCaptchaV3Field, RecaptchaWidget
 
 
 @action("index", method=["GET", "POST"])
-@action.uses("index.html", auth, T)
+@action.uses("index.html", auth, T, flash, session)
 def index():
     message = "Waiting..."
-    captcha_site_key = settings.GOOGLE_RECAPTCHA_SITE_KEY
+    captcha_site_key = settings.RECAPTCHA_SITE_KEY
     form = Form(
         [
             Field("product_name"),
@@ -68,8 +68,10 @@ def index():
 
         # Make up your decision
         if verificacion["result"] == True:
+            flash.set("Looks like a human", sanitize=True, _class="success")
             print("Looks like a human")
         else:
+            flash.set("Looks like a bot", sanitize=True, _class="warning")
             print("Looks like a bot")
 
         message = verificacion["message"]

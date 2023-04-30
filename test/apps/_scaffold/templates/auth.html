@@ -12,4 +12,19 @@
 </style>
 <div class="auth-container">
   [[=form]]
+  [[=recaptcha]]
 </div>
+
+
+[[block page_scripts]]<!-- individual pages can add scripts here -->
+<script src="https://www.google.com/recaptcha/api.js?render=123"></script>
+
+<script>
+  let captcha_key = '123'
+  grecaptcha.ready(function () {
+    grecaptcha.execute(captcha_key, { action: 'contacto' }).then(function (token) {
+      document.getElementById('auht_user_recaptcha').value = token;
+    });
+  });
+</script>
+[[end]]

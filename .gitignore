@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# py4web
+
+RECAPTCHAV3.code-workspace

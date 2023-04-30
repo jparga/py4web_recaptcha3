@@ -25,8 +25,8 @@ class Recaptcha3:
         """
         Initializes the Recaptcha3 class with the public and secret key, token and score
         """
-        self.public_key = settings.GOOGLE_RECAPTCHA_SITE_KEY
-        self.secret_key = settings.GOOGLE_RECAPTCHA_SECRET_KEY
+        self.public_key = settings.RECAPTCHA_SITE_KEY
+        self.secret_key = settings.RECAPTCHA_SECRET_KEY
         self.token = token
         self.score = score
         self.response = None
