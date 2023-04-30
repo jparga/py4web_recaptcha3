@@ -33,7 +33,6 @@ The Google recaptcha keys are imported from the settings.py file
 
 Make sure you have a valid public and secret key from Google reCAPTCHA and a valid token from the user.
 
-There are keys created only for testing in this demo.
 
 ## Recaptcha in auth forms
 

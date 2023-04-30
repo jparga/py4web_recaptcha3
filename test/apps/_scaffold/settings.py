@@ -98,8 +98,8 @@ CELERY_BROKER = "redis://localhost:6379/0"
 
 
 # Recaptcha V3 settings
-RECAPTCHA_SITE_KEY = "6LeGNc0lAAAAAA7jYh-4y6IieAi-8TsXpdN1-HjZ"
-RECAPTCHA_SECRET_KEY = "6LeGNc0lAAAAAJAWBVr4OeX6aIzP_xR2M1CEzZQN"
+RECAPTCHA_SITE_KEY = "my_site_key"
+RECAPTCHA_SECRET_KEY = "my_secret_key"
 
 
 # try import private settings
