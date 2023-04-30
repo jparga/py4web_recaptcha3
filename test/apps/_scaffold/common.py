@@ -205,7 +205,7 @@ if settings.RECAPTCHA_SECRET_KEY:
 else:
     auth.enable(uses=(session, T, db), env=dict(T=T))
 
-# TODO recaptcha v3 in auth forms
+
 # #######################################################
 # Define convenience decorators
 # #######################################################
