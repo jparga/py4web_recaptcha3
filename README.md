@@ -33,6 +33,8 @@ The Google recaptcha keys are imported from the settings.py file
 
 Make sure you have a valid public and secret key from Google reCAPTCHA and a valid token from the user.
 
+There are keys created only for testing in this demo.
+
 ## Recaptcha in auth forms
 
 It is already made by py4web developer Massimo Di Pierro in https://github.com/web2py/py4web/blob/master/py4web/utils/recaptcha.py
