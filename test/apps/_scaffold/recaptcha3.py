@@ -54,7 +54,7 @@ class Recaptcha3:
 
 
 class ReCaptchaV3Field:
-    def __init__(self, name, action, min_score):
+    def __init__(self, name, action="generic", min_score=0.5):
         """
         Initializes the class with the required fields for reCAPTCHA v3.
         :param name: The name of the reCAPTCHA field.
@@ -86,7 +86,7 @@ class ReCaptchaV3Field:
             return False, "Missing reCAPTCHA response"
         res = requests.post(
             "https://www.google.com/recaptcha/api/siteverify",
-            data=dict(secret=self.secret_key, response=my_token),
+            data=dict(secret=self.secret_key, response=my_token, action=self.action),
         )
         if res.status_code == 200:
             challenge_response = res.json()

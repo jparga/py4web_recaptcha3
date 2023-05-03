@@ -61,7 +61,7 @@ def index():
         my_token = request.POST.get("g-recaptcha-response")
 
         # Get recaptcha response
-        captcha = Recaptcha3(token=my_token, score=0.6)
+        captcha = Recaptcha3(token=my_token, score=0.6, action="homepage")
 
         # Get the verification result
         verificacion = captcha.captcha_verify()

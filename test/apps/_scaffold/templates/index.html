@@ -27,7 +27,7 @@
 <script>
   let captcha_key = '[[=captcha_site_key]]'
   grecaptcha.ready(function () {
-    grecaptcha.execute(captcha_key, { action: 'contacto' }).then(function (token) {
+    grecaptcha.execute(captcha_key, { action: 'homepage' }).then(function (token) {
       document.getElementById('g-recaptcha-response').value = token;
     });
   });
