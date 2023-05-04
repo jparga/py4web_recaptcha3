@@ -23,7 +23,7 @@ class Recaptcha3:
     captcha_verify(): Verifies the reCAPTCHA token and returns the result and message.
     """
 
-    def __init__(self, token: str = None, score: float = 0.5):
+    def __init__(self, token: str = None, score: float = 0.5, action="generic"):
         """
         Initializes the Recaptcha3 class with the public and secret key, token and score
         """
@@ -31,6 +31,7 @@ class Recaptcha3:
         self.secret_key = settings.RECAPTCHA_SECRET_KEY
         self.token = token
         self.score = score
+        self.action = action
         self.response = None
         self.json = None
 
@@ -40,7 +41,7 @@ class Recaptcha3:
         """
         if not self.token:
             return {"result": False, "message": "Token is missing"}
-        url = f"https://www.google.com/recaptcha/api/siteverify?secret={self.secret_key}&response={self.token}"
+        url = f"https://www.google.com/recaptcha/api/siteverify?secret={self.secret_key}&response={self.token}&action={self.action}"
         self.response = requests.post(url)
         self.json = self.response.json()
         if self.json["success"] and self.json["score"] > self.score:
